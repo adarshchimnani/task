@@ -10,6 +10,7 @@ import Grid from '@mui/material/Grid';
 import Card from '../BasicCard';
 import BasicCardList from '../BasicCardList';
 import User from './User';
+import CreditCard from './CreditCard';
 // import '../../style/Sidebar.css'
 
 
@@ -100,14 +101,19 @@ export default function Sidebar() {
                                 <Card currency="Dollars" amount="1234$" />
                             </Grid>
                             <Grid item xs={12} sm={3} md={3}>
-                                <Card currency="Euro" amount="1234"/>
+                                <Card currency="Euro" amount="1234" />
                             </Grid>
                             <Grid item xs={12} sm={3} md={3}>
-                                <Card currency="INR" amount="1234"/>
+                                <Card currency="INR" amount="1234" />
                             </Grid>
-                            <User/>
+                            <Grid item xs={12} sm={12} md={12}>
+                                <User />
+                            </Grid>
+                            <Grid item xs={12} sm={5} md={5}>
+                                <CreditCard/>
+                            </Grid>
                         </Grid>
-                        
+
                         {/* <Grid container spacing={1} >
                             {[0, 1, 2, 3, 4].map((item, index) => <Grid key={index} item xs={12} sm={12} md={4}>
                                 <Card />
