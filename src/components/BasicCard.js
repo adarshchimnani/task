@@ -15,13 +15,13 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard() {
+export default function BasicCard(props) {
   return (
     <Card sx={{ maxWidth: 350 }}>
-      <div style={{ background: 'linear-gradient(to right, #00c6fb, #005bea)', color: 'white', padding: '1rem', borderRadius: '0.5rem' }}>
-        <h2>Card Title</h2>
-        <p>Card content goes here...</p>
-        <button style={{ background: 'white', color: '#005bea', padding: '0.5rem 1rem', border: 'none', borderRadius: '0.25rem' }}>Learn More</button>
+      <div style={{ background: 'linear-gradient(to right, #00c6fb, #005bea)', color: 'white', borderRadius: '0.5rem' }}>
+        <h2>{props.currency}</h2>
+        <p>{props.amount}</p>
+        <button style={{ background: 'white', color: '#005bea', border: 'none', borderRadius: '0.25rem' }}>Learn More</button>
       </div>
     </Card>
   );

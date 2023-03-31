@@ -7,7 +7,10 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-
+import Card from '../BasicCard';
+import BasicCardList from '../BasicCardList';
+import User from './User';
+// import '../../style/Sidebar.css'
 
 
 
@@ -54,6 +57,7 @@ function a11yProps(index) {
 
 export default function Sidebar() {
 
+    let arr = [1, 2, 3];
 
     const [value, setValue] = React.useState(0);
 
@@ -76,19 +80,40 @@ export default function Sidebar() {
                         sx={{ borderRight: 1, borderColor: 'divider', marginTop: 10 }}
 
                     >
-                        <Tab label="Products" aria-label="phone" {...a11yProps(0)} />
-                        <Tab label="Orders"  {...a11yProps(1)} />
-                        <Tab label="Blogs"  {...a11yProps(2)} />
-                        <Tab label="Users" {...a11yProps(3)} />
-                        {/* <Tab label="Item Five" {...a11yProps(4)} />
-                        <Tab label="Item Six" {...a11yProps(5)} />
-                        <Tab label="Item Seven" {...a11yProps(6)} /> */}
+                        <Tab label="Dashboard" aria-label="phone" {...a11yProps(0)} />
+                        <Tab label="Account"  {...a11yProps(1)} />
+                        <Tab label="Card"  {...a11yProps(2)} />
+                        <Tab label="Transactions" {...a11yProps(3)} />
+                        <Tab label="Payment" {...a11yProps(4)} />
+                        <Tab label="Invoice" {...a11yProps(5)} />
+                        <Tab label="Settings" {...a11yProps(6)} />
                     </Tabs>
                 </Grid>
 
                 <Grid item lg={9} md={9} sm={4}>
                     <TabPanel value={value} index={0}   >
-                
+                        <Grid container spacing={1} >
+                            <Grid item xs={12} sm={3} md={3}>
+                                <Card currency="Open Another Account" amount="Click Here" />
+                            </Grid>
+                            <Grid item xs={12} sm={3} md={3}>
+                                <Card currency="Dollars" amount="1234$" />
+                            </Grid>
+                            <Grid item xs={12} sm={3} md={3}>
+                                <Card currency="Euro" amount="1234"/>
+                            </Grid>
+                            <Grid item xs={12} sm={3} md={3}>
+                                <Card currency="INR" amount="1234"/>
+                            </Grid>
+                            <User/>
+                        </Grid>
+                        
+                        {/* <Grid container spacing={1} >
+                            {[0, 1, 2, 3, 4].map((item, index) => <Grid key={index} item xs={12} sm={12} md={4}>
+                                <Card />
+                            </Grid>)}
+                        </Grid>
+                        <BasicCardList arr={arr}/> */}
                     </TabPanel>
                     <TabPanel value={value} index={1}>
 
@@ -100,13 +125,13 @@ export default function Sidebar() {
 
                     </TabPanel>
                     <TabPanel value={value} index={4}>
-                        Item Five
+
                     </TabPanel>
                     <TabPanel value={value} index={5}>
-                        Item Six
+
                     </TabPanel>
                     <TabPanel value={value} index={6}>
-                        Item Seven
+
                     </TabPanel>
                 </Grid>
             </Grid>
