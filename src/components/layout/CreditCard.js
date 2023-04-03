@@ -1,31 +1,18 @@
-import React from 'react';
-// import '../../styles/CreditCard.css';
+import React from 'react'
+import Card from 'react-credit-card-payment'
 
-const CreditCard = () => {
+export default function CreditCard  () {
   return (
-    <div className="credit-card">
-     <div class="container">
-        <div class="circles">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-          </div>
-          
-        <div class="card">
-            <div class="visa_logo">
-                <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/visa.png" alt=""/>
-            </div>
-            <div class="visa_info">
-                <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" alt=""/>
-                <p>4586 7985 9271 6388</p>
-            </div>
-            <div class="visa_crinfo">
-                <p>02/12</p>
-                <p>Adarsh</p>
-            </div>
-        </div>
+    <div>
+      <h4>My Card</h4>
+      <Card
+        bankName='ANZ Bank'
+        cardHolder='Andrew White'
+        cardNumber='1234567898765432'
+        issuer='visa'
+        theme='dark'
+        sx={{ width: 500}}
+      />
     </div>
-    </div>
-  );
-};
-
-export default CreditCard;
+  )
+}
