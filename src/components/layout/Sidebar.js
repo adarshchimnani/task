@@ -11,8 +11,8 @@ import Card from '../BasicCard';
 import BasicCardList from '../BasicCardList';
 import User from './User';
 import CreditCard from './CreditCard';
+import Chart from './Chart';
 // import '../../style/Sidebar.css'
-
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -106,12 +106,28 @@ export default function Sidebar() {
                             <Grid item xs={12} sm={3} md={3}>
                                 <Card currency="INR" amount="1234" />
                             </Grid>
-                            <Grid item xs={12} sm={12} md={12}>
-                                <User />
+                            <Grid item xs={12} sm={3} md={3}>
+                                <Card currency="Dollars" amount="1234$" />
                             </Grid>
-                            <Grid item xs={12} sm={5} md={5}>
+                            <Grid item xs={12} sm={3} md={3}>
+                                <Card currency="Euro" amount="1234" />
+                            </Grid>
+                            <Grid item xs={12} sm={3} md={3}>
+                                <Card currency="INR" amount="1234" />
+                            </Grid>
+                            <Grid container item sx={{marginTop:5}}>
+                                <Grid item xs={12} sm={3} md={3} sx={{marginRight:5}} >
+                                    <CreditCard />
+                                </Grid>
+                                <Grid item xs={12} sm={8} md={8} >
+                                    <Chart />
+                                </Grid>
+                            </Grid>
+
+                            {/* <Grid item xs={12} sm={5} md={5}>
                                 <CreditCard/>
                             </Grid>
+                             */}
                         </Grid>
 
                         {/* <Grid container spacing={1} >
