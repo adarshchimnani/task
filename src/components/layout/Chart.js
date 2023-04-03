@@ -1,71 +1,108 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
+
+// material-ui
 import { useTheme } from '@mui/material/styles';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
-// import Title from './Title';
 
-// Generate Sales Data
-function createData(time, amount) {
-  return { time, amount };
-}
+// third-party
+import ReactApexChart from 'react-apexcharts';
 
-const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', undefined),
-];
+// chart options
+const areaChartOptions = {
+    chart: {
+        height: 340,
+        type: 'line',
+        toolbar: {
+            show: false
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    stroke: {
+        curve: 'smooth',
+        width: 1.5
+    },
+    grid: {
+        strokeDashArray: 4
+    },
+    xaxis: {
+        type: 'datetime',
+        categories: [
+            '2018-05-19T00:00:00.000Z',
+            '2018-06-19T00:00:00.000Z',
+            '2018-07-19T01:30:00.000Z',
+            '2018-08-19T02:30:00.000Z',
+            '2018-09-19T03:30:00.000Z',
+            '2018-10-19T04:30:00.000Z',
+            '2018-11-19T05:30:00.000Z',
+            '2018-12-19T06:30:00.000Z'
+        ],
+        labels: {
+            format: 'MMM'
+        },
+        axisBorder: {
+            show: false
+        },
+        axisTicks: {
+            show: false
+        }
+    },
+    yaxis: {
+        show: false
+    },
+    tooltip: {
+        x: {
+            format: 'MM'
+        }
+    }
+};
 
-export default function Chart() {
-  const theme = useTheme();
+// ==============================|| REPORT AREA CHART ||============================== //
 
-  return (
-    <React.Fragment>
-      {/* <Title>Today</Title> */}
-      <ResponsiveContainer>
-        <LineChart
-          data={data}
-          margin={{
-            top: 16,
-            right: 16,
-            bottom: 0,
-            left: 24,
-          }}
-        >
-          <XAxis
-            dataKey="time"
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          />
-          <YAxis
-            stroke={theme.palette.text.secondary}
-            style={theme.typography.body2}
-          >
-            <Label
-              angle={270}
-              position="left"
-              style={{
-                textAnchor: 'middle',
-                fill: theme.palette.text.primary,
-                ...theme.typography.body1,
-              }}
-            >
-              Sales ($)
-            </Label>
-          </YAxis>
-          <Line
-            isAnimationActive={false}
-            type="monotone"
-            dataKey="amount"
-            stroke={theme.palette.primary.main}
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </React.Fragment>
-  );
-}
+const Chart = () => {
+    const theme = useTheme();
+
+    const { primary, secondary } = theme.palette.text;
+    const line = theme.palette.divider;
+
+    const [options, setOptions] = useState(areaChartOptions);
+
+    useEffect(() => {
+        setOptions((prevState) => ({
+            ...prevState,
+            colors: [theme.palette.warning.main],
+            xaxis: {
+                labels: {
+                    style: {
+                        colors: [secondary, secondary, secondary, secondary, secondary, secondary, secondary, secondary]
+                    }
+                }
+            },
+            grid: {
+                borderColor: line
+            },
+            tooltip: {
+                theme: 'light'
+            },
+            legend: {
+                labels: {
+                    colors: 'grey.500'
+                }
+            }
+        }));
+    }, [primary, secondary, line, theme]);
+
+    const [series] = useState([
+        {
+            name: 'Series 1',
+            data: [58, 115, 28, 83, 63, 75, 35, 55]
+        }
+    ]);
+
+    return <div>
+        <h4>Transactions</h4>
+        <ReactApexChart options={options} series={series} type="line" height={200} />
+    </div>;
+};
+
+export default Chart;
